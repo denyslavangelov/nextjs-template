@@ -1,0 +1,4 @@
+- TS strict
+- Tailwind
+- small components
+- minimal diffs only
