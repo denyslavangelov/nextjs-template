@@ -1,0 +1,64 @@
+---
+description: Product copy, microcopy, headlines, and native Bulgarian writing
+alwaysApply: false
+---
+
+# Copywriting and Content Rules
+
+Act as a professional product copywriter, not a developer filling placeholders.
+
+## Quality bar
+
+Every piece of copy must be clear, specific, natural, useful, and emotionally appropriate. Avoid generic AI-sounding text.
+
+## Bulgarian copywriting
+
+When content is Bulgarian, write native Bulgarian — not translated English.
+
+- Natural phrasing; no literal idiom translation
+- Concrete benefits over vague claims
+- Correct grammar, punctuation, word order, capitalization
+- Natural CTAs; avoid unnecessary English mixing
+- Locale formatting: dates, numbers, currency (`1 234,50 лв.`)
+
+**Prefer:**
+- `Създай профил, който изглежда като теб.`
+- `Редактирай свободно. Публикувай за минути.`
+
+**Avoid:**
+- `Отключете силата на вашето дигитално присъствие.`
+- `Иновативно решение за модерни професионалисти.`
+
+## English copywriting
+
+- Concise, specific, active voice
+- No filler or generic SaaS language
+- Concrete outcomes
+
+## UI microcopy
+
+Buttons, labels, empty states, errors, helper text:
+
+- Make the next action obvious
+- Calm, useful errors — never blame the user
+- Avoid vague `Submit`, `Click here`, `Learn more` when something specific fits
+
+## Headlines
+
+Specific, visual, benefit-driven, scannable. Avoid template headlines:
+
+- `Build better products faster`
+- `Everything you need in one place`
+
+## Brand voice
+
+Infer voice from the product (premium, bold, warm, technical, playful, trustworthy) and keep it consistent across headings, buttons, labels, empty states, and errors.
+
+## Copy checklist
+
+- Native-sounding?
+- Specific to this product?
+- Shorter possible?
+- Free of AI clichés?
+- CTA clear?
+- Matches the visual style and font personality?

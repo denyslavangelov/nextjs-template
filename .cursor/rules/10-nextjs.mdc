@@ -1,0 +1,60 @@
+---
+description: Next.js App Router, React 19, and routing conventions
+globs:
+  - "src/app/**"
+  - "src/**/*.tsx"
+  - "src/**/*.ts"
+alwaysApply: false
+---
+
+# Next.js Rules (App Router)
+
+## General
+
+- Use Next.js App Router conventions.
+- Prefer Server Components by default.
+- Add `"use client"` only for local state, event handlers, browser APIs, or animations.
+- Do not mix client/server logic unnecessarily.
+
+## File structure
+
+- Keep `page.tsx` and `layout.tsx` clean and minimal.
+- Do not place heavy business logic inside route files.
+- Extract logic into `features/`, `lib/`, or hooks.
+- Add `loading.tsx`, `error.tsx`, and `not-found.tsx` for user-facing routes when appropriate.
+
+## Data fetching
+
+- Fetch on the server whenever possible.
+- Avoid unnecessary client-side fetching.
+- Keep fetching logic separate from UI when appropriate.
+- Always handle loading, error, and empty states.
+
+## Routing
+
+- Use clean, semantic route structures.
+- Avoid deeply nested routes without clear purpose.
+
+## Forms and actions
+
+- Use typed forms and Server Actions.
+- Validate on the server; never trust client-only validation.
+- Keep server actions small: validate → business logic → format response.
+- Return typed, predictable shapes.
+
+## Images and metadata
+
+- Use `next/image` for content images with meaningful `alt` text and appropriate `sizes`.
+- Use `generateMetadata` for public pages (title, description, OG when relevant).
+
+## Performance and caching
+
+- Avoid unnecessary re-renders and heavy client-side logic.
+- Do not prematurely optimize.
+- Be intentional about `fetch` caching vs `no-store` — document non-obvious cache choices.
+
+## Security
+
+- Never expose secrets to the client.
+- Sanitize or escape user-generated HTML.
+- Use `.env.example` for required environment variables.

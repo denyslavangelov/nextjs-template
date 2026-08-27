@@ -1,0 +1,66 @@
+---
+description: Styled form controls — checkboxes, dropdowns, calendars, inputs; never browser defaults
+globs:
+  - "src/**/*{form,Form,input,Input,select,Select,checkbox,Checkbox,calendar,Calendar,date,Date,picker,Picker}*"
+  - "src/**/*.tsx"
+alwaysApply: false
+---
+
+# Form Controls and Pickers
+
+Form controls are part of the product's visual language. They must feel designed, not like OS defaults in an otherwise polished UI.
+
+**Never ship raw native controls as final UI** unless the user explicitly asks for native controls.
+
+## Match the design system
+
+Before building any control, match:
+
+- border radius, border weight, and surfaces used by buttons and cards
+- typography scale for labels, helper text, errors
+- accent color, focus ring, hover/active, disabled styling
+- spacing rhythm and control height with adjacent inputs and buttons
+
+If `components/ui/` primitives exist, use them. Do not create a second visual style.
+
+## All controls
+
+- Custom-styled UI over semantic HTML, or project headless primitives — fully restyled.
+- Comfortable mobile hit areas (not 12px targets).
+- Polished `hover`, `focus-visible`, `disabled`, `invalid`, `loading` states.
+- Preserve keyboard and screen-reader behavior.
+
+## Checkboxes and radios
+
+- No default browser checkbox/radio as visible UI.
+- Custom indicators: rounded square/circle, subtle border, accent fill, smooth check/dot transition.
+- Clickable labels; consistent group spacing.
+
+## Dropdowns and selects
+
+- No native `<select>` as visible UI.
+- Trigger matches text inputs: height, padding, radius, border, background.
+- Menu: elevation, border, radius, item padding, hover/selected states.
+- Long lists: search/filter + empty state. Multi-select: styled chips/tags.
+
+## Calendars and date/time
+
+- No `<input type="date|time|datetime-local">` as final UI.
+- Calendar panel matches design system: navigation, weekdays, today/selected/range/disabled states.
+- Styled trigger showing formatted value; handle locale and mobile usability.
+
+## Text fields
+
+- Inputs, textareas, search, number fields share one system with dropdown/date triggers.
+- Consistent placeholders, icons, clear buttons, error messaging.
+- Combobox/autocomplete matches dropdown styling.
+
+## Avoid
+
+- Gray bordered rectangles unrelated to the page
+- Mixed native + custom controls in one form
+- Tiny checkboxes beside large polished buttons
+- Browser-default calendar popups
+- Invisible focus rings
+
+When adding a dependency for primitives, prefer small headless libraries only if none exist — always restyle to match the product.

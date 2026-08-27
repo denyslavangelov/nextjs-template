@@ -1,0 +1,143 @@
+---
+description: UI design quality, typography, tokens, layout, and anti-generic-AI rules
+globs:
+  - "src/**/*.tsx"
+  - "src/**/*.css"
+alwaysApply: false
+---
+
+# UI, Frontend, and Design Rules
+
+## Before building UI
+
+1. Inspect existing pages, tokens in `globals.css`, and any `components/ui/` primitives.
+2. Reuse existing components — do not invent a parallel visual style.
+3. Decide the visual idea: what should feel memorable, premium, playful, technical, or editorial?
+
+## Design tokens (control plane)
+
+Use semantic tokens from `globals.css` / `@theme`. Map UI to roles:
+
+- `background`, `foreground`, surface, muted text, border, accent, danger, success
+
+Forbidden unless mapped to project tokens:
+
+- Raw Tailwind palette dumps: `gray-*`, `blue-500`, `zinc-400`, `purple-600`
+- Arbitrary values: `w-[347px]`, `text-[#6366f1]`, `p-[13px]`
+- Mixed radii with no system (e.g. `rounded-md` buttons beside `rounded-full` CTAs on the same screen)
+
+When tokens are missing, extend `globals.css` first — do not hardcode one-off colors in components.
+
+## Design quality
+
+Build clean, modern, premium UI. Every screen needs a clear visual idea:
+
+- unusual but usable layout
+- strong editorial typography
+- asymmetric composition
+- refined spacing rhythm
+- expressive cards or panels
+- tasteful depth (borders, shadows, glass) — not heavy drop shadows everywhere
+- subtle motion with purpose
+- distinctive empty states
+- product-specific visual metaphors
+
+### Avoid standard AI slop
+
+- generic gradient hero sections
+- floating random cards without meaning
+- overused purple/blue SaaS palettes
+- fake dashboard widgets
+- generic icon grids with vague labels
+- headings like "Powerful features for modern teams"
+- identical rounded cards at identical spacing
+- sterile template layouts
+- unstyled native form controls (see form-controls rule)
+- nested cards inside cards
+- div soup instead of semantic structure
+- mixed icon libraries in one project
+
+### Memorable vs restrained
+
+- **Marketing / landing pages:** bolder layout, display typography, more personality.
+- **Forms / settings / dashboards:** quieter, consistent, scannable — still designed, not default.
+
+## Typography and fonts
+
+Typography is identity. If the font choice could belong to any random SaaS template, it failed.
+
+### Never lazy-default to these
+
+Do not reach for these just because they are common in AI training data:
+
+- Inter (especially as the automatic choice on every project)
+- Roboto, Open Sans, Lato, Poppins, Montserrat, Nunito, Work Sans
+- Arial, Helvetica, `system-ui`, or `font-sans` with no `next/font` setup
+- Geist / Geist Mono — only if the product is intentionally technical/minimal and Cyrillic is not required
+- Using one font family for everything with no hierarchy
+
+### Font selection process
+
+For each product or major redesign:
+
+1. **Infer mood** from the product: premium, editorial, playful, brutalist, warm, technical, luxury, youthful, trustworthy.
+2. **Choose a pairing** — display + body, or serif headlines + sans body, or one versatile family with weight contrast.
+3. **Load with `next/font`** (Google or local). Use `variable` CSS classes on `body` or layout.
+4. **Build hierarchy** — display, h1–h3, body, caption, label, metadata with distinct size, weight, and tracking.
+5. **Verify Cyrillic** if content is Bulgarian — see copywriting rule; do not ship Latin-optimized fonts that weaken Cyrillic.
+
+### Creative, modern directions (pick intentionally — not all at once)
+
+**Distinctive sans / neo-grotesk:** Bricolage Grotesque, Sora, Outfit, Plus Jakarta Sans, Manrope, Onest, Golos Text, IBM Plex Sans, Wix Madefor Text
+
+**Editorial / character:** Instrument Serif, Newsreader, Fraunces, Playfair Display (sparingly), Lora
+
+**Technical / precise:** IBM Plex Sans/Mono, JetBrains Mono, Space Grotesk (mono accents only)
+
+**Warm / human:** Source Serif 4 + DM Sans, Literata + Figtree
+
+**Bulgarian-safe workhorses:** Manrope, Commissioner, PT Root UI, Golos Text, Onest, IBM Plex Sans, Wix Madefor Text
+
+Pair thoughtfully: e.g. display serif + clean sans, or geometric headings + humanist body.
+
+### Typography craft
+
+- Use 2–3 weights minimum; avoid one-weight pages.
+- Generous line-height on body (1.5–1.7); tighter tracking on large display type.
+- Labels and metadata: smaller size, medium weight, slightly increased letter-spacing.
+- Use `font-feature-settings` or variable font axes when it improves numerals or character.
+- Respect `prefers-reduced-motion` for any typography-driven motion.
+
+## Layout and composition
+
+- Mobile-first with real hierarchy — not a flat stack.
+- Design for long Bulgarian text, truncation, and empty states.
+- Break symmetry when it improves the design; keep alignment deliberate.
+
+## Surfaces beyond forms
+
+Apply the same design system to:
+
+- **Modals / drawers:** focus trap, escape to close, labelled heading, backdrop, destructive confirm pattern
+- **Tables:** match borders/surfaces; sticky header when needed; empty state
+- **Tabs:** keyboard accessible; clear active state matching accent system
+- **Toasts / alerts:** one calm style; specific copy; do not stack noise
+- **Loading:** layout-matched skeletons preferred over generic spinners
+- **Icons:** one library per project (e.g. Lucide); consistent stroke size
+
+## Component design
+
+- One job per component; small and composable.
+- Extract reusable UI instead of repeating long JSX + class strings.
+- Group Tailwind classes: layout → spacing → typography → colors → borders → effects → states.
+
+## State, effects, interaction
+
+- Keep state local; derive values; avoid unnecessary `useEffect`.
+- Every interactive element: `hover`, `active`, `focus-visible`, `disabled`, `loading`, `error`, `empty`, `success`.
+- Focus rings must remain visible after custom styling.
+
+## Accessibility
+
+- Semantic HTML, labels, contrast, keyboard navigation.
+- Do not communicate important information with color alone.

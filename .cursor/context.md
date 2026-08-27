@@ -1,17 +1,23 @@
-Always follow all rules defined in:
+# Project Rules
 
-- 01-core-rules.md
-- 02-nextjs-rules.md
-- 03-ui-rules.md
-- 04-types-and-data.md
-- 05-copywriting-and-content.md
-- 06-finalize-ship-deploy.md
+Rules live in `.cursor/rules/*.mdc` and activate automatically by scope:
 
-These rules override default behavior.
+| Rule | When it applies |
+|------|-----------------|
+| `00-core.mdc` | Always |
+| `10-nextjs.mdc` | `src/app/**`, `src/**/*.ts(x)` |
+| `20-ui-design.mdc` | `src/**/*.tsx`, `src/**/*.css` |
+| `21-form-controls.mdc` | Form/input/select/calendar files + TSX |
+| `30-copywriting.mdc` | Visible text, headlines, Bulgarian content |
+| `40-types-data.mdc` | `src/**/*.ts(x)` |
+| `50-ship-deploy.mdc` | Finalize, ship, deploy, GitHub, Vercel |
 
-When the task involves UI, layout, typography, branding, landing pages, components, or visual polish, apply `03-ui-rules.md` carefully.
+These rules override default AI behavior.
 
-When the task involves visible text, headings, buttons, labels, empty states, errors, onboarding, landing page sections, Bulgarian content, or brand voice, apply `05-copywriting-and-content.md` carefully.
+## Quick reminders
 
+- **UI:** No generic AI slop. No lazy fonts (Inter-by-default, Arial, unthemed `font-sans`). Choose fonts intentionally with `next/font`. Match design tokens; never ship native form controls.
+- **Copy:** Native Bulgarian when content is Bulgarian. No template SaaS language.
+- **Ship:** Never claim deploy success without real CLI output.
 
-When the user asks to finalize, ship, create a GitHub repo, push to GitHub, deploy to Vercel, or show the final live domain, apply `06-finalize-ship-deploy.md` carefully.
+To force a rule in chat: `@00-core` or `@20-ui-design` (rule name without `.mdc`).

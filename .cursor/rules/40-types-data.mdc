@@ -1,0 +1,55 @@
+---
+description: TypeScript strictness, validation, API shapes, and async error handling
+globs:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+alwaysApply: false
+---
+
+# TypeScript, Data, and API Rules
+
+## TypeScript
+
+- Strict typing always.
+- Never use `any` unless absolutely necessary and commented.
+- Interfaces for structured objects; type aliases for unions.
+- Explicitly type component props.
+- Avoid unsafe type assertions.
+
+## Functions
+
+- Small, single-purpose, pure when possible.
+- Explicit inputs and outputs.
+
+## Data handling
+
+- Consistent data shapes between frontend and backend.
+- Safely handle `null` and `undefined`.
+
+## Validation
+
+- Never trust user input.
+- Validate all critical data on the server.
+- Return clear, user-friendly errors — not internal stack traces.
+
+## API design
+
+Separate validation, business logic, and response formatting.
+
+Handle all failure cases. Do not leak internal errors.
+
+## Async states
+
+Always handle: loading, success, error, empty.
+
+## Forms
+
+- Typed form data.
+- Validate before and on submission.
+- Predictable behavior and error display.
+
+## Error handling
+
+- Use `try/catch` where needed.
+- No silent failures.
+- Meaningful error messages for users and logs for developers.

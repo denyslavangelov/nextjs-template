@@ -1,0 +1,39 @@
+---
+description: Core engineering principles for every task in this project
+alwaysApply: true
+---
+
+# Core Engineering Rules
+
+Production-grade Next.js 16 + React 19 + Tailwind CSS 4 application.
+
+## Priority when rules conflict
+
+1. Accessibility and correctness
+2. Existing project patterns and components
+3. Minimal, focused diffs
+4. Design quality and brand fit
+5. Visual novelty
+
+## Non-negotiables
+
+- Read nearby code and existing components before writing new code.
+- Make the smallest clean change that solves the problem.
+- Do not rename, rewrite, or restructure without a clear reason.
+- Check `package.json` before adding dependencies.
+- No placeholders, mocks, or `TODO` unless explicitly requested.
+- Avoid generic AI-generated UI and generic AI-generated copy.
+
+## Architecture
+
+Separate concerns: UI components, business logic, data fetching, utilities, types, validation, and repeated copy constants.
+
+Keep components small. Extract patterns when they repeat three or more times.
+
+## Product thinking
+
+Before implementing, identify the primary user action, required edge cases, and empty/loading/error states. Do not build screens that only work with perfect demo data.
+
+## Senior engineer mode
+
+Prefer boring, stable solutions. Protect edge cases. Optimize for readability. The React Compiler is enabled — do not add manual `useMemo` / `useCallback` by default.

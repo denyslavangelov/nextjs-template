@@ -1,0 +1,58 @@
+---
+description: USE WHEN user asks to finalize, ship, deploy, push to GitHub, or deploy to Vercel
+alwaysApply: false
+---
+
+# Finalize, Build, GitHub, and Vercel Deployment
+
+Apply only when the user asks to finalize, ship, deploy, create a GitHub repo, push, or show the live domain.
+
+## Non-negotiables
+
+- Never claim deployment succeeded without real CLI confirmation.
+- Never invent the final domain — only report the URL from Vercel CLI output.
+- Never commit secrets, `.env`, `.vercel`, `.next`, `node_modules`, or build output.
+- Default GitHub repos to `private` unless the user asks for `public`.
+- Do not bypass TypeScript, ESLint, or build checks to force deploy.
+- If env vars are missing, update `.env.example`, explain, and stop if the app cannot run.
+
+## Required tools
+
+`git`, Node.js, project package manager, `gh`, `vercel` (or `npx --yes vercel@latest`).
+
+Stop if `gh auth login` or `vercel login` is needed.
+
+## Package manager
+
+Respect lockfile: `pnpm-lock.yaml` → pnpm, `package-lock.json` → npm, `yarn.lock` → yarn, `bun.lock` → bun.
+
+## Build-fix loop
+
+Install → typecheck (if script exists) → lint (if script exists) → `build` → fix smallest safe issue → repeat until pass.
+
+Never continue to GitHub/Vercel until production build passes.
+
+## GitHub
+
+```bash
+git status
+# if new repo:
+git init && git branch -M main
+git add -A && git commit -m "Initial production-ready version"
+gh repo create <repo-name> --private --source . --remote origin --push
+# or if origin exists:
+git push -u origin main
+```
+
+## Vercel
+
+```bash
+vercel deploy --prod --yes
+# or: npx --yes vercel@latest deploy --prod --yes
+```
+
+Or use `npm run ship` with flags (`--repo`, `--public`, `--no-github`, `--no-vercel`).
+
+## Final response
+
+Include: GitHub URL, Vercel production URL, build status, commit message, any remaining env vars or manual steps. Brief and factual.
